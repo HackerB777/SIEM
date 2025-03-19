@@ -1,0 +1,27 @@
+<div class="navbar">
+    <div class="navbar-content">
+        <div class="navbar-left">
+            <a class="navbar" href="{% url 'siem:index' %}">
+                <b>SIEM</b></a>
+            &middot;
+            <a class="navbar" href="{% url 'siem:logevent_search' %}">
+                Log Events</a>
+            &middot;
+            <a class="navbar" href="{% url 'siem:lp_index' %}">
+                Parsers</a>
+            &middot;
+            <a class="navbar" href="{% url 'siem:ph_index' %}">
+                Helpers</a>
+            &middot;
+            <a class="navbar" href="{% url 'siem:ruleevent_search' %}">
+                Rule Events</a>
+            &middot;
+            <a class="navbar" href="{% url 'siem:lr_index' %}">
+                Rules</a>
+        </div>
+        <div class="navbar-right">
+            <a class="navbar" href="{% url 'siem:help_index' %}">
+                Help</a>
+        </div>
+    </div>
+</div>

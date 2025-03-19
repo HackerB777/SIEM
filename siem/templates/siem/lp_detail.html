@@ -1,0 +1,56 @@
+{% extends "siem/base.html" %}
+
+{% block sub-title %}Parser - {{ lp }} | {% endblock %}
+
+{% block content-main %}
+
+{% if form.errors %}
+<p>There were some errors.</p>
+
+<ul>
+    {% for field in form %}
+    {% if field.errors %}
+    <li>{{ field.label_tag }}: {{ field.errors }}</li>
+    {% endif %}
+    {% endfor %}
+</ul>
+
+{% endif %}
+
+<h1>{{ lp }} (Parser)</h1>
+<a href="{% url 'siem:lp_update' lp.id %}">Edit</a>
+&middot;
+<a href="{% url 'siem:lp_delete' lp.id %}">Delete</a>
+&middot;
+<a href="{% url 'siem:lp_index' %}">Index</a>
+<table>
+    <tr>
+        <th>Attribute</th><th>Setting</th><th class="left">Description</th>
+    </tr>
+    <tr>
+        <td class="right">ID</td><td>{{ ph.id }}</td><td>The parser's internal ID</td>
+    </tr>
+    <tr>
+        <td class="right">Built-in?</td><td>{{ ph.is_builtin }}</td><td>Whether the parser is built-in to LogESP.</td>
+    </tr>
+    <tr>
+        <td class="right">Name</td><td>{{ lp.name }}</td><td>The parser name.</td>
+    </tr>
+    <tr>
+        <td class="right">Desc</td><td>{{ lp.desc }}</td><td>A description of the parser.</td>
+    </tr>
+    <tr>
+        <td class="right">Match Regex</td><td>{{ lp.match_regex }}</td><td>The regular expression for finding attributes.</td>
+    </tr>
+    <tr>
+        <td class="right">Fields</td><td>{{ lp.fields }}</td><td>The fields parsed by the regular expression.</td>
+    </tr>
+    <tr>
+        <td class="right">Backup Match Regex</td><td>{% if lp.backup_match_regex %}{{ lp.backup_match_regex }}{% endif %}</td><td>A backup regular expression, in case the first one fails.</td>
+    </tr>
+    <tr>
+        <td class="right">Backup Fields</td><td>{% if lp.backup_fields %}{{ lp.backup_fields }}{% endif %}</td><td>The fields parsed by the backup regular expression.</td>
+    </tr>
+</table>
+
+{% endblock %}

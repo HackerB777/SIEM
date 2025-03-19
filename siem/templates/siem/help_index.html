@@ -1,0 +1,40 @@
+{% extends "siem/base.html" %}
+
+{% block sub-title %}Documentation | {% endblock %}
+
+{% block content-main %}
+
+<h1>Documentation</h1>
+
+<ul>
+    <li><a href="{% url 'siem:parse_help' %}">Parsing</a><ul>
+        <li><a href="{% url 'siem:parse_help' %}#daemon">Parse Daemon</a></li>
+        <li><a href="{% url 'siem:parse_help' %}#event">Event Parsing</a><ul>
+            <li><a href="{% url 'siem:parse_help' %}#parsers">Parsers</a></li>
+            <li><a href="{% url 'siem:parse_help' %}#helpers">Parse Helpers</a></li>
+            </ul>
+        </li>
+        <li><a href="{% url 'siem:parse_help' %}#configuration">Configuration</a><ul>
+        </ul>
+    </li>
+    <li><a href="{% url 'siem:rule_help' %}">Rules</a><ul>
+        <li><a href="{% url 'siem:rule_help' %}#daemon">Sentry Daemon</a></li>
+        <li><a href="{% url 'siem:rule_help' %}#limitrules">Limit Rules</a><ul>
+            <li><a href="{% url 'siem:rule_help' %}#rulevlog">Rule vs. Log Events</a></li>
+            <li><a href="{% url 'siem:rule_help' %}#filters">Filters</a></li>
+            <li><a href="{% url 'siem:rule_help' %}#match-lists">Match Lists</a></li>
+            <li><a href="{% url 'siem:rule_help' %}#reverse-matching">Reverse Matching</a></li>
+            <li><a href="{% url 'siem:rule_help' %}#magnitude">Magnitude Calculation</a></li>
+            </ul>
+        </li>
+        </ul>
+    </li>
+    <li><a href="{% url 'siem:event_help' %}">Events</a><ul>
+        <li><a href="{% url 'siem:event_help' %}#logevent">Anatomy of a Log Event</a></li>
+        <li><a href="{% url 'siem:event_help' %}#ruleevent">Anatomy of a Rule Event</a></li>
+        </ul></li>
+    <li><a href="{% url 'siem:daemon_help' %}">Daemons</a></li>
+    <li><a href="{% url 'siem:regex_help' %}">Regex Tips</a></li>
+</ul>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "siem/base.html" %}
+
+{% block sub-title %}Rule-Based Event | {% endblock %}
+
+{% block content-main %}
+
+<h1>Rule-Based Event</h1>
+<a href="{% url 'siem:ruleevent_search' %}">Index</a>
+
+<ul>
+    <li>ID: {{ event.id }}</li>
+    <li>Date Stamp: {{ event.date_stamp|date:"Y M d H:i:s" }}</li>
+    <li>Time Zone: {{ event.time_zone }}</li>
+    <li>SIEM EOL Date: {{ event.eol_date_local|date:"Y M d" }}</li>
+    <li>Backup EOL Date: {{ event.eol_date_backup|date:"Y M d" }}</li>
+    <li>Rule Category: {{ event.rule_category }}</li>
+    <li>Event Type: {{ event.event_type }}</li>
+    <li>Source Rule:
+        <a href="{% url 'siem:lr_detail' event.source_rule.id %}">{{ event.source_rule }}</a></li>
+    <li>Magnitude: {{ event.magnitude }}</li>
+    <li>Event Count: {{ event.event_count }}</li>
+    <li>Event Limit: {{ event.event_limit }}</li>
+    <li>Time Interval: {{ event.time_int }} minutes</li>
+    <li>Severity: {{ event.severity }}</li>
+    <li>Log Source Count: {{ event.log_source_count }}</li>
+    <li>Source Host Count: {{ event.source_host_count }}</li>
+    <li>Dest Host Count: {{ event.dest_host_count }}</li>
+    <li>Message: {{ event.message }}</li>
+    <li>Source Log Events:
+        {%for s in event.source_ids_log.all %}
+            <a href="{% url 'siem:logevent_detail' s.id %}">{{ s.id }}</a>
+        {% endfor %}
+    </li>
+    <li>Source Rule Events:
+        {%for s in event.source_ids_rule.all %}
+            <a href="{% url 'siem:ruleevent_detail' s.id %}">{{ s.id }}</a>
+        {% endfor %}
+    </li>
+</ul>
+
+{% endblock %}

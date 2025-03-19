@@ -1,0 +1,21 @@
+{% extends "risk/base.html" %}
+
+{% block sub-title %}Non-Adversarial Threat Sources | {% endblock %}
+
+{% block content-main %}
+
+<h1>Non-Adversarial Threat Sources</h1>
+<a href="{% url 'risk:nts_create' %}">Add</a>
+
+{% if nts_list %}
+    <ul>
+        {% for nts in nts_list %}
+            <li><a href="{% url 'risk:nts_detail' nts.id %}">
+                    {{ nts }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No non-adversarial threat sources.</p>
+{% endif %}
+
+{% endblock %}

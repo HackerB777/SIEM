@@ -1,0 +1,37 @@
+{% extends "risk/base.html" %}
+
+{% block sub-title %}Non-Adversarial Threat Events | {% endblock %}
+
+{% block content-main %}
+
+<h1>Non-Adversarial Threat Events</h1>
+<a href="{% url 'risk:nts_index' %}">Sources</a>
+&middot;
+<a href="{% url 'risk:cond_index' %}">Predisposing Conditions</a>
+&middot;
+<a href="{% url 'risk:impact_index' %}">Impacts</a>
+&middot;
+<a href="{% url 'risk:response_index' %}">Responses</a>
+<br>
+<br>
+
+<a href="{% url 'risk:nte_create' %}">Add Event</a>
+<br>
+
+{% if nte_list %}
+    <table>
+        <tr><th>Threat Event</th><th>Relevance</th><th>Assigned<br>Risk</th></tr>
+        {% for nte in nte_list %}
+            <td><a href="{% url 'risk:nte_detail' nte.id %}">
+                    {{ nte }}</a></td>
+            <td>{{ nte.get_relevance_display }}</td>
+            <td>{{ nte.assigned_risk }}</td></tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No non-adversarial threat events.</p>
+{% endif %}
+
+<p>Based on <a href="https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final">NIST SP 800-30r1</a>.</p>
+
+{% endblock %}

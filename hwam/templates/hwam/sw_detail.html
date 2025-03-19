@@ -1,0 +1,145 @@
+{% extends "hwam/base.html" %}
+
+{% block sub-title %}Software Asset - {{ sw }} | {% endblock %}
+
+{% block content-main %}
+
+<h1>{{ sw }} (Software Asset)</h1>
+<a href="{% url 'hwam:sw_update' sw.id %}">Edit</a>
+&middot;
+<a href="{% url 'hwam:sw_delete' sw.id %}">Delete</a>
+&middot;
+<a href="{% url 'hwam:sw_index' %}">Index</a>
+
+<p>{{ sw.desc }}</p>
+<ul>
+    <li>Organizational Unit:
+        <a href="{% url 'hwam:ou_detail' sw.org_unit.id %}">
+            {{ sw.org_unit }}</a></li>
+    <li>Custodians:<ul>
+            <li>Inventory (SWAM):
+                {% if sw.custodian_swam %}
+                    {{ sw.custodian_swam.username }}
+                    <a href="mailto:{{ sw.custodian_swam.email }}">
+                        {{ sw.custodian_swam.email }}</a>
+                {% else %}
+                    {{ sw.org_unit.unit_contact.username }}
+                    <a href="mailto:{{ sw.org_unit.unit_contact.email }}">
+                        {{ sw.org_unit.unit_contact.email }}</a>
+                {% endif %}
+            </li>
+            <li>Configuration (CSM):
+                {% if sw.custodian_csm %}
+                    {{ sw.custodian_csm.username }}
+                    <a href="mailto:{{ sw.custodian_csm.email }}">
+                        {{ sw.custodian_csm.email }}</a>
+                {% else %}
+                    {{ sw.org_unit.unit_contact.username }}
+                    <a href="mailto:{{ sw.org_unit.unit_contact.email }}">
+                        {{ sw.org_unit.unit_contact.email }}</a>
+                {% endif %}
+            </li>
+            <li>Patching (VUL):
+                {% if sw.custodian_vul %}
+                    {{ sw.custodian_vul.username }}
+                    <a href="mailto:{{ sw.custodian_vul.email }}">
+                        {{ sw.custodian_vul.email }}</a>
+                {% else %}
+                    {{ sw.org_unit.unit_contact.username }}
+                    <a href="mailto:{{ sw.org_unit.unit_contact.email }}">
+                        {{ sw.org_unit.unit_contact.email }}</a>
+                {% endif %}
+            </li>
+        </ul></li>
+    {% if sw.parent_hardware.all %}
+    <li>Parent Hardware:<ul>
+        {% for a in sw.parent_hardware.all %}
+            <li><a href="{% url 'hwam:hw_detail' a.id %}">
+                    {{ a }}</a></li>
+        {% endfor %}
+        </ul></li>
+    {% endif %}
+    {% if sw.parent_software.all %}
+        <li>Parent Software:<ul>
+            {% for a in sw.parent_software.all %}
+                <li><a href="{% url 'hwam:sw_detail' a.id %}">
+                        {{ a }}</a></li>
+            {% endfor %}
+            </ul></li>
+    {% endif %}
+    {% if sw.child_software.all %}
+        <li>Child Software:<ul>
+            {% for a in sw.child_software.all %}
+                <li><a href="{% url 'hwam:sw_detail' a.id %}">
+                        {{ a }}</a></li>
+            {% endfor %}
+            </ul></li>
+    {% endif %}
+    <li>Software Type: {{ sw.software_type }}</li>
+    <li>Package Vendor/Name/Version:
+        {{ sw.package_vendor }} {{ sw.package_name }}-{{ sw.package_version }}
+    </li> 
+    <li>Software Property ID: {{ sw.sw_property_id }}</li>
+    <li>Status: {{ sw.get_status_display }}</li>
+    <li>Lifespan:<ul>
+        <li>Date Added: {{ sw.date_added }}</li>
+        <li>EOL Date: {{ sw.date_eol }}</li></ul></li>
+    <li>Networking<ul>
+        <li>Hostname: {{ sw.hostname }}</li>
+        <li>Domain Name: {{ sw.domain_name }}</li>
+        <li>IPv4 Addresses:<ul>
+            {% if sw.ip4_address_1 %}
+            <li>IPv4 Address 1: {{ sw.ip4_address_1 }}</li>
+            {% endif %}
+            {% if sw.ip4_address_2 %}
+            <li>IPv4 Address 2: {{ sw.ip4_address_2 }}</li>
+            {% endif %}
+            {% if sw.ip4_address_3 %}
+            <li>IPv4 Address 3: {{ sw.ip4_address_3 }}</li>
+            {% endif %}
+            {% if sw.ip4_address_4 %}
+            <li>IPv4 Address 4: {{ sw.ip4_address_4 }}</li>
+            {% endif %}
+            {% if sw.ip4_address_5 %}
+            <li>IPv4 Address 5: {{ sw.ip4_address_5 }}</li>
+            {% endif %}
+            {% if sw.ip4_address_6 %}
+            <li>IPv4 Address 6: {{ sw.ip4_address_6 }}</li>
+            {% endif %}
+            {% if sw.ip4_address_7 %}
+            <li>IPv4 Address 7: {{ sw.ip4_address_7 }}</li>
+            {% endif %}
+            {% if sw.ip4_address_8 %}
+            <li>IPv4 Address 8: {{ sw.ip4_address_8 }}</li>
+            {% endif %}
+            </ul></li>
+        <li>IPv6 Addresses:<ul>
+            {% if sw.ip6_address_1 %}
+            <li>IPv6 Address 1: {{ sw.ip6_address_1 }}</li>
+            {% endif %}
+            {% if sw.ip6_address_2 %}
+            <li>IPv6 Address 2: {{ sw.ip6_address_2 }}</li>
+            {% endif %}
+            {% if sw.ip6_address_3 %}
+            <li>IPv6 Address 3: {{ sw.ip6_address_3 }}</li>
+            {% endif %}
+            {% if sw.ip6_address_4 %}
+            <li>IPv6 Address 4: {{ sw.ip6_address_4 }}</li>
+            {% endif %}
+            {% if sw.ip6_address_5 %}
+            <li>IPv6 Address 5: {{ sw.ip6_address_5 }}</li>
+            {% endif %}
+            {% if sw.ip6_address_6 %}
+            <li>IPv6 Address 6: {{ sw.ip6_address_6 }}</li>
+            {% endif %}
+            {% if sw.ip6_address_7 %}
+            <li>IPv6 Address 7: {{ sw.ip6_address_7 }}</li>
+            {% endif %}
+            {% if sw.ip6_address_8 %}
+            <li>IPv6 Address 8: {{ sw.ip6_address_8 }}</li>
+            {% endif %}
+            </ul></li>
+        </ul></li>
+</ul>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "hwam/base.html" %}
+
+{% block sub-title %}Hardware Asset Search | {% endblock %}
+
+{% block content-main %}
+
+<h1>Hardware Asset Search</h1>
+
+<form method="get" action="{% url 'hwam:hw_search' %}">
+    <p>Filter: <input type="text" value="{{filter}}" name="filter"/></p>
+    <p><input type="submit" name="submit" value="Submit"/></p>
+</form>
+
+{% if hw_list %}
+    {% for a in hw_list %}
+        <ul>
+            <li><a href="{% url 'hwam:hw_detail' a.id %}">{{ a }}</a></li>
+        </ul>
+    {% endfor %}
+{% else %}
+    <p>No assets.</p>
+{% endif %}
+
+{% endblock %}

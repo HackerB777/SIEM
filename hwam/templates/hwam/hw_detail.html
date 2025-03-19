@@ -1,0 +1,74 @@
+{% extends "hwam/base.html" %}
+
+{% block sub-title %}Hardware Asset - {{ hw }} | {% endblock %}
+
+{% block content-main %}
+
+<h1>{{ hw }} (Hardware Asset)</h1>
+<a href="{% url 'hwam:hw_update' hw.id %}">Edit</a>
+&middot;
+<a href="{% url 'hwam:hw_delete' hw.id %}">Delete</a>
+&middot;
+<a href="{% url 'hwam:hw_index' %}">Index</a>
+
+<p>{{ hw.desc }}</p>
+<ul>
+    <li>Organizational Unit:
+        <a href="{% url 'hwam:ou_detail' hw.org_unit.id %}">
+            {{ hw.org_unit }}</a></li>
+    <li>Owner:
+        {% if hw.asset_owner %}
+            {{ hw.asset_owner.username }}
+            <a href="mailto:{{ hw.asset_owner.email }}">
+                {{ hw.asset_owner.email }}</a>
+        {% else %}
+            {{ hw.org_unit.unit_contact.username }}
+            <a href="mailto:{{ hw.org_unit.unit_contact.email }}">
+                {{ hw.org_unit.unit_contact.email }}</a>
+        {% endif %}
+    </li>
+    <li>Custodian:
+        {% if hw.asset_custodian %}
+            {{ hw.asset_custodian.username }}
+            <a href="mailto:{{ hw.asset_custodian.email }}">
+                {{ hw.asset_custodian.email }}</a>
+        {% else %}
+            {{ hw.org_unit.unit_contact.username }}
+            <a href="mailto:{{ hw.org_unit.unit_contact.email }}">
+                {{ hw.org_unit.unit_contact.email }}</a>
+        {% endif %}
+    </li>
+    {% if hw.parent_hardware %}
+    <li>Parent Hardware:<ul>
+        <li><a href="{% url 'hwam:hw_detail' hw.parent_hardware.id %}">
+                {{ hw.parent_hardware }}</a></li>
+        </ul></li>
+    {% endif %}
+    {% if hw.child_hardware.all %}
+        <li>Child Hardware:<ul>
+            {% for a in hw.child_hardware.all %}
+                <li><a href="{% url 'hwam:hw_detail' a.id %}">
+                        {{ a }}</a></li>
+            {% endfor %}
+        </ul></li>
+    {% endif %}
+    {% if hw.child_software.all %}
+        <li>Child Software:<ul>
+            {% for a in hw.child_software.all %}
+                <li><a href="{% url 'hwam:sw_detail' a.id %}">
+                        {{ a }}</a></li>
+            {% endfor %}
+            </ul></li>
+    {% endif %}
+    <li>Hardware Type: {{ hw.hardware_type }}</li>
+    <li>Property ID: {{ hw.property_id }}</li>
+    <li>Device Maker: {{ hw.device_maker }}</li>
+    <li>Device Model: {{ hw.device_model }}</li>
+    <li>Location: {{ hw.location }}</li>
+    <li>Status: {{ hw.status }}</li>
+    <li>Lifespan:<ul>
+    <li>Date Added: {{ hw.date_added }}</li>
+    <li>EOL Date: {{ hw.date_eol }}</li></ul></li>
+</ul>
+
+{% endblock %}

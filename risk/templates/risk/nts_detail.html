@@ -1,0 +1,26 @@
+{% extends "risk/base.html" %}
+
+{% block sub-title %}Non-Adversarial Threat Source - {{ nts }} | {% endblock %}
+
+{% block content-main %}
+
+<h1>{{ nts }} (Non-Adversarial Threat Source)</h1>
+<a href="{% url 'risk:nts_update' nts.id %}">Edit</a>
+&middot;
+<a href="{% url 'risk:nts_delete' nts.id %}">Delete</a>
+&middot;
+<a href="{% url 'risk:nts_index' %}">Index</a>
+
+<p>{{ nts.desc }}</p>
+
+<ul>
+    <li>In Scope?: {{ nts.in_scope }}</li>
+    <li>Threat Source Type: {{ nts.source_type }}</li>
+    <li>Info Source:<ul>
+            <li>Info Source: {{ nts.info_source }}</li>
+            <li>Info Source Tier: {{ nts.get_tier_display }}</li>
+        </ul></li>
+    <li>Range of Effect: {{ nts.range_of_effect }}</li>
+</ul>
+
+{% endblock %}

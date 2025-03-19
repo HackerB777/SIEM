@@ -1,0 +1,22 @@
+{% extends "hwam/base.html" %}
+
+{% block sub-title %}Hardware Assets | {% endblock %}
+
+{% block content-main %}
+
+<h1>Hardware Assets</h1>
+<a href="{% url 'hwam:hw_create' %}">Add</a>
+&middot;
+<a href="{% url 'hwam:hw_search' %}">Search</a>
+
+{% if hw_list %}
+    <ul>
+        {% for a in hw_list %}
+            {% include "hwam/hw_tree_view.html" %}
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No assets.</p>
+{% endif %}
+
+{% endblock %}

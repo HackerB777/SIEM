@@ -1,0 +1,21 @@
+{% extends "risk/base.html" %}
+
+{% block sub-title %}Predisposing Conditions | {% endblock %}
+
+{% block content-main %}
+
+<h1>Predisposing Conditions</h1>
+<a href="{% url 'risk:cond_create' %}">Add</a>
+
+{% if cond_list %}
+    <ul>
+        {% for cond in cond_list %}
+            <li><a href="{% url 'risk:cond_detail' cond.id %}">
+                    {{ cond }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No predisposing conditions.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "risk/base.html" %}
+
+{% block sub-title %}Predisposing Condition - {{ cond }} | {% endblock %}
+
+{% block content-main %}
+
+<h1>{{ cond }} (Predisposing Condition)</h1>
+<a href="{% url 'risk:cond_update' cond.id %}">Edit</a>
+&middot;
+<a href="{% url 'risk:cond_delete' cond.id %}">Delete</a>
+&middot;
+<a href="{% url 'risk:cond_index' %}">Index</a>
+
+<p>{{ cond.desc }}</p>
+
+<ul>
+    <li>Condition Type: {{ cond.cond_type }}</li>
+    <li>Pervasiveness (1-100): {{ cond.pervasiveness }}</li>
+    <li>Information Source: {{ cond.info_source }}</li>
+    <li>Info Source Tier: {{ cond.tier }}</li>
+</ul>
+
+{% endblock %}

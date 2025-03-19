@@ -1,0 +1,35 @@
+{% extends "hwam/base.html" %}
+
+{% block sub-title %}Software Assets | {% endblock %}
+
+{% block content-main %}
+
+<h1>Software Assets</h1>
+<a href="{% url 'hwam:sw_create' %}">Add</a>
+&middot;
+<a href="{% url 'hwam:sw_search' %}">Search</a>
+
+{% if sw_list %}
+    <ul>
+        <li>Running on hardware:
+        <ul>
+            {% for a in sw_list.0 %}
+                <li><a href="{% url 'hwam:sw_detail' a.id %}">
+                        {{ a }}</a></li>
+            {% endfor %}
+        </ul></li>
+    </ul>
+    <ul>
+        <li>Running on software:
+        <ul>
+            {% for a in sw_list.1 %}
+                <li><a href="{% url 'hwam:sw_detail' a.id %}">
+                        {{ a }}</a></li>
+            {% endfor %}
+        </ul></li>
+    </ul>
+{% else %}
+    <p>No assets.</p>
+{% endif %}
+
+{% endblock %}

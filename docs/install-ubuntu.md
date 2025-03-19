@@ -49,7 +49,7 @@ exit
 ### Clone LogESP
 ```
 cd /opt
-git clone https://github.com/HackerB777/LogESP.git
+git clone https://github.com/HackerB777/SIEM.git
 cd LogESP
 ```
 

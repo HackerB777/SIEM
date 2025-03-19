@@ -160,7 +160,7 @@ In a production security environment, a few more steps are recommended:
 - Use NTP on log sources for time synchronization
 - Secure NTP communication
 - Update the `SECRET_KEY` setting in `config/settings.py`
-- Follow all other instructions in the [Django deployment checklist](https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/)
+- Follow all other instructions in the [Django deployment checklist](https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/)
 
 Note: LogESP is still testing, and should only be deployed in production by people who really know what they are doing.
 

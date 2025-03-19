@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Index | {% endblock %}
+
+{% block content %}
+
+<h1>LogESP</h1>
+<p>Version {{ version }}</p>
+
+<ul>
+    <li><a href="{% url 'hwam:index' %}">Assets</a>
+        &middot; Asset Management</li>
+    <li><a href="{% url 'risk:index' %}">Risk</a>
+        &middot; Risk Management</li>
+    <li><a href="{% url 'siem:index' %}">SIEM</a>
+        &middot; Security Information and Event Management</li>
+</ul>
+
+{% endblock %}

@@ -1,0 +1,115 @@
+BODY {
+    background: #000000;
+    color: #EAE9E7;
+}
+
+DIV.topbar {
+    float:top;
+}
+
+DIV.navbar-content {
+    border: 3px solid;
+    border-color: #444444;
+    padding: 0.25%;
+    font-size: 1.2em;
+}
+
+DIV.navbar-left{
+    display: inline-block;
+    text-align: left;
+}
+
+
+DIV.navbar-right{
+    display: inline-block;
+    float: right;
+    text-align: right;
+}
+
+DIV.main {
+    padding: 0.5%;
+}
+
+DIV.footer {
+    font-size: 0.8em;
+    padding-top: 12px;
+    padding-bottom: 8px;
+}
+
+DIV.license {
+    text-align: left;
+    display: inline-block;
+}
+
+DIV.pagination {
+    padding-top: 8px;
+    padding-bottom: 16px;
+}
+
+INPUT {
+    color: #EAE9E7;
+    background-color: #222222;
+    border: 1px solid;
+    border-color: #777777;
+    padding: 2px;
+}
+
+PRE {
+    background-color: #222222;
+    display: inline-block;
+    padding: 8px;
+}
+
+TABLE, TH, TD {
+    border: 1px solid;
+    border-color: #444444;
+}
+
+TABLE.event {
+    display: inline-block;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+TABLE.searchform { border: none; }
+
+TH.left { text-align: left; }
+
+TD.right {
+    text-align: right;
+}
+
+TD.searchform {
+    border: none;
+    text-align: right;
+}
+
+TD.searchsubmit {
+    border: none;
+}
+A.navbar:link, A.navbar:visited {
+    color: #55AAFF;
+    text-decoration: none;
+}
+
+A.navbar:hover {
+    text-decoration: underline;
+}
+
+A {
+    color: #55AAFF;
+}
+
+A:visited {
+    color: #AA66BB;
+}
+
+UL {
+    list-style-position: outside;
+}
+
+LI {
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+}
